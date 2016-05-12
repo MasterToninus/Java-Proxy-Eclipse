@@ -21,12 +21,6 @@ import java.lang.reflect.Proxy;
  */
 public class DemoProxy {
 
-	/**
-	 * 
-	 */
-	public DemoProxy() {
-		System.out.println("ciauBau");
-	}
 
 	/**
 	 * @param args
@@ -43,11 +37,12 @@ public class DemoProxy {
 
 		TargetInterface realSubject = new TargetImplementation();
 		//This call implicitly creates the proxy class, which can be retrieved with getProxyClass.
-		TargetInterface proxy = (TargetInterface) Proxy.newProxyInstance(
+		TargetInterface proxedSubject = (TargetInterface) Proxy.newProxyInstance(
 				realSubject.getClass().getClassLoader(),
 				realSubject.getClass().getInterfaces(),
 				new TargetInvocationHandler(realSubject));
-		proxy.method();
+		realSubject.method();
+		proxedSubject.method();
 		/*
 		 * You create dynamic proxies using the Proxy.newProxyInstance() method. The newProxyInstance() methods takes 3 parameters:
 		 * 	- The ClassLoader that is to "load" the dynamic proxy class.
@@ -68,9 +63,55 @@ public class DemoProxy {
         t.method();
 
         
+		System.out.println("\n\nCase 3: Further testing of the Proxy object");	
+		Class<?> clazz = proxedSubject.getClass();
+		
+		System.out.println( "proxedSubject.getClass() = " + clazz);
+		System.out.println( "proxedSubject.toString() = " + proxedSubject.toString());       
+		System.out.println( "realSubject.getClass() = " + realSubject.getClass());       
+		System.out.println( "realSubject.toString() = " + realSubject.toString());       
         
-        
-        
+        //Conclusion. every invocation on the proxedSubject variable pass through the invoke method. except for the .getClass()
+		//http://stackoverflow.com/questions/19633534/what-is-com-sun-proxy-proxy
+
+		
+		System.out.println("\n\nCase 4: Probing Proxy Class");
+		System.out.println("*-------------------------*");
+		ReflectionInspection.probe(proxedSubject.getClass());
+		System.out.println("*-------------------------*");
+		ReflectionInspection.probe(realSubject.getClass());
+
+		System.out.println("\n\nCase 4: Probing Proxy object");
+		//Proxy è una classe costruita a runtime. l'unico modo per capire come è fatta è di esplorarla con la reflection
+		//https://docs.oracle.com/javase/tutorial/reflect/member/fieldValues.html
+		//TODO Passo l'istanza e esamino nel dettaglio gli attributi (cosa contengono) e i metodi
+		//TODO Guardare anche cosa contengono gli attributi che vengono erediti
+		//TODO elencare anche i metodi ereditati
+		//		ReflectionInspection.deepProbe(proxedSubject.getClass());
+
+		
+		System.out.println("\n\nCase 6: Proxy Creation inside main class constructor");	
+		new DemoProxy();
+		
 	}
+	
+	/**
+	 * 
+	 */
+	public DemoProxy() {
+		System.out.println("*** Entering *" + this.getClass().getName() + "* Costructor***");
+
+		TargetInterface realSubject = new TargetImplementation();
+		//This call implicitly creates the proxy class, which can be retrieved with getProxyClass.
+		TargetInterface proxedSubject = (TargetInterface) Proxy.newProxyInstance(
+				realSubject.getClass().getClassLoader(),
+				realSubject.getClass().getInterfaces(),
+				new TargetInvocationHandler(realSubject));
+		proxedSubject.method();
+		
+		System.out.println("*** Exting *" + this.getClass().getName() + "* Costructor***");		
+	}
+	
+
 
 }
