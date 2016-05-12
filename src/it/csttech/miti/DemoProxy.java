@@ -7,7 +7,7 @@ import java.lang.reflect.Proxy;
 
 /**
  * 
- * Concetti Gemelli: proxy and invocation handler:
+ * Twin concepts: proxy and invocation handler:
  * Method invocations on an instance of a dynamic proxy class are dispatched to a single method in the instance's invocation handler, and they are encoded with a java.lang.reflect.Method object identifying the method that was invoked and an array of type Object containing the arguments.
  * 
  * Cosa sono i Proxy:
