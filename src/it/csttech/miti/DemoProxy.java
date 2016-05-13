@@ -81,7 +81,7 @@ public class DemoProxy {
 		System.out.println("*-------------------------*");
 		ReflectionInspection.probeClassDeep(realSubject.getClass());
 
-		System.out.println("\n\nCase 4: Probing Proxy object");
+		System.out.println("\n\nCase 5: Probing Proxy object");
 		//Proxy è una classe costruita a runtime. l'unico modo per capire come è fatta è di esplorarla con la reflection
 		//https://docs.oracle.com/javase/tutorial/reflect/member/fieldValues.html
 		//TODO Passo l'istanza e esamino nel dettaglio gli attributi (cosa contengono) e i metodi
@@ -94,7 +94,16 @@ public class DemoProxy {
 		ReflectionInspection.probeInstance(realSubject);
 
 		
-		System.out.println("\n\nCase 6: Proxy Creation inside main class constructor");	
+		System.out.println("\n\nCase 6: Proxy Creation inside main class constructor");
+		
+		System.out.println("\n\nCase 7: Probing Proxy Methods");
+		System.out.println("*-------------------------*");
+		ReflectionInspection.probeClassMethods(proxedSubject.getClass());
+		System.out.println("*-------------------------*");
+		ReflectionInspection.probeClassMethods(realSubject.getClass());
+		System.out.println("\n *-------------------------* \n");
+		
+		//ReflectionInspection.probeClassMethods();
 		new DemoProxy();
 		
 	}
