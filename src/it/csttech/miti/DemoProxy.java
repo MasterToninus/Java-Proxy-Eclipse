@@ -77,9 +77,9 @@ public class DemoProxy {
 		
 		System.out.println("\n\nCase 4: Probing Proxy Class");
 		System.out.println("*-------------------------*");
-		ReflectionInspection.probe(proxedSubject.getClass());
+		ReflectionInspection.probeClass(proxedSubject.getClass());
 		System.out.println("*-------------------------*");
-		ReflectionInspection.probe(realSubject.getClass());
+		ReflectionInspection.probeClass(realSubject.getClass());
 
 		System.out.println("\n\nCase 4: Probing Proxy object");
 		//Proxy è una classe costruita a runtime. l'unico modo per capire come è fatta è di esplorarla con la reflection

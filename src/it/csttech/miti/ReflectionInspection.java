@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class ReflectionInspection {
 
-	static public void probe(Class<?> c) {
+	static public void probeClass(Class<?> c) {
 			System.out.format("Class:%n  %s%n%n", c.getCanonicalName());
 			System.out.format("Modifiers:%n  %s%n%n", Modifier.toString(c.getModifiers()));
 
@@ -26,7 +26,7 @@ public class ReflectionInspection {
 			fancyArrayShow(decAnn);
 			System.out.format("Annotations:%n");
 			Annotation[] ann = c.getAnnotations();
-			fancyArrayShow(decAnn);			
+			fancyArrayShow(ann);			
 
 			System.out.format("Implemented Interfaces:%n");
 			Class<?>[] interfaces = c.getInterfaces();
@@ -48,8 +48,7 @@ public class ReflectionInspection {
 			Class<?>[] innClaz = c.getClasses();	
 			fancyArrayShow(innClaz);			
 			
-
-			
+	
 			System.out.format("Declared Methods:%n");
 			Method[] decMet = c.getDeclaredMethods();
 			fancyArrayShow(decMet);
@@ -66,6 +65,40 @@ public class ReflectionInspection {
 			
 	}
 
+	/*
+	 * Inspect the contents of the field  of the passed object
+	 */
+	static public void probeInstance(Object o) {
+		
+	}
+	
+	/*
+	 * Inspect the passed Method
+	 */
+	static public void probeMethod(Method m) {
+		
+	}
+
+	/**
+	 * Inspect the passed Constructor
+	 * @param c
+	 */
+	static public void probeConstructor(Constructor<?> c) {
+		
+	}	
+	
+	/**
+	 * Inspect the passed Field
+	 * @param f
+	 */
+	static public void probeField(Field f){
+		
+	}
+
+	/**
+	 * Quick print out of all the element of the passed array as toString()
+	 * @param array
+	 */
 	private static void fancyArrayShow(Object[] array){
 		if (array.length != 0) {
 			for (Object a : array)
@@ -76,7 +109,7 @@ public class ReflectionInspection {
 		}		
 	}
 	
-	private static void printAncestor(Class<?> c, List<Class> l) {
+	private static void printAncestor(Class<?> c, List<Class<?>> l) {
 		Class<?> ancestor = c.getSuperclass();
 		if (ancestor != null) {
 			l.add(ancestor);
