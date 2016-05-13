@@ -27,5 +27,16 @@ public class TargetImplementation implements TargetInterface {
 		String thisMethodName = new Object(){}.getClass().getEnclosingMethod().toString();
 		System.out.println("    *" + this.getClass().getName() + "*: is invoking *" + thisMethodName +"*");
 	}
+	
+	/**
+	 * @literal i
+	 * @literal j
+	 * @param i
+	 * @param j
+	 * @return
+	 */
+	public int provaNomeParam(int i, int j) {
+		return i + j;
+	}
 
 }
