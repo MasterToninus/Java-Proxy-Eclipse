@@ -46,7 +46,7 @@ public class ReflectionInspection {
 		Set<Field> allFields = new HashSet<Field>(Arrays.asList( clazz.getDeclaredFields()));
 		allFields.addAll(Arrays.asList(clazz.getFields()));
 
-		System.out.format("|%24s | %24s | %20s | = | [ %s ] %n",
+		System.out.format(separatorLine(130) + "\n|%24s | %24s | %20s | = | [ %s ] %n" + separatorLine(130) +"\n" ,
 				"MODIFIERS","TYPE","NAME","VALUE");
 		for (Field f : allFields){
 			//String type = f.getType().getName();
@@ -68,7 +68,7 @@ public class ReflectionInspection {
 				e.printStackTrace();
 			}
 		}
-	
+		System.out.println(separatorLine(130));	
 	
 	}
 	
@@ -79,13 +79,6 @@ public class ReflectionInspection {
 		
 	}
 
-	/**
-	 * Inspect the passed Constructor
-	 * @param c
-	 */
-	static public void probeConstructor(Constructor<?> c) {
-		
-	}	
 	
 	/**
 	 * Inspect the passed Field
@@ -180,7 +173,6 @@ public class ReflectionInspection {
 	}
 
 	static public String probeInnerClass(Class<?> c) {
-	//System.out.format("| %s | %s | %s | %s | %s | %s | %s |%n","MODIFIERS","NAME","PACKAGE","ANNO.","SUPERCLASS","INTERFACES","SYNTHETIC");
 		return(	String.format("| %s | %s | %s | %s | %s | %s | %s |%n",
 					Modifier.toString(c.getModifiers()),
 					c.getSimpleName(),
@@ -196,13 +188,42 @@ public class ReflectionInspection {
 		Set<Class<?>> allClasses = new HashSet<Class<?>>(Arrays.asList( c.getDeclaredClasses()));
 		allClasses.addAll(Arrays.asList(c.getClasses()));
 
-		System.out.format("InnerClasses :%n");		
+		System.out.format("INNERCLASSES :%n");		
 		if (allClasses.size() != 0) {
 			System.out.format(separatorLine(130) + "%n| %s | %s | %s | %s | %s | %s | %s |%n" + separatorLine(130) + "\n",
 					"MODIFIERS","NAME","PACKAGE","ENCLOSING CLASS","ANNO.","SUPERCLASS","INTERFACES");
 			
 			for(Class<?> a : allClasses)
 				System.out.print(probeInnerClass(a));
+			System.out.println(separatorLine(130));	
+		} else {
+			System.out.format("  -- None --%n");
+		}			
+		
+	}
+	
+	static public String probeConstructor(Constructor<?> c) {
+		return(	String.format("| %s | %s | %s | %s | %s | %s | %s |%n",
+					Modifier.toString(c.getModifiers()),
+					c.getName(),
+					c.getDeclaringClass().getSimpleName(),
+					c.getDeclaredAnnotations().length,
+					Arrays.asList(c.getGenericParameterTypes()),
+					Arrays.asList(c.getGenericExceptionTypes()),
+					(c.isSynthetic())? "yes" : "no"));
+	}
+
+	static public void probeConstructors(Class<?> c) {
+		Set<Constructor<?>> allConstructors = new HashSet<Constructor<?>>(Arrays.asList( c.getDeclaredConstructors()));
+		allConstructors.addAll(Arrays.asList(c.getConstructors()));
+
+		System.out.format("CONSTRUCTORS :%n");		
+		if (allConstructors.size() != 0) {
+			System.out.format(separatorLine(130) + "%n| %s | %s | %s | %s | %s | %s | %s |%n" + separatorLine(130) + "\n",
+					"MODIFIERS","NAME","DECLARINGCLASS","ANNO.","PARAMETERS","EXCEPTIONS","SYNTHETIC");
+			
+			for(Constructor<?> a : allConstructors)
+				System.out.print(probeConstructor(a));
 			System.out.println(separatorLine(130));	
 		} else {
 			System.out.format("  -- None --%n");
@@ -222,6 +243,7 @@ public class ReflectionInspection {
 		probeInnerClasses(c);
 		
 
+
 		System.out.format("Declared Methods:%n");
 		Method[] decMet = c.getDeclaredMethods();
 		fancyArrayShow(decMet);
@@ -229,12 +251,7 @@ public class ReflectionInspection {
 		Method[] met = c.getMethods();
 		fancyArrayShow(met);
 		
-		System.out.format("Declared Constructors:%n");
-		Constructor<?>[] decCons = c.getDeclaredConstructors();
-		fancyArrayShow(decCons);
-		System.out.format("Constructors:%n");
-		Constructor<?>[] cons = c.getConstructors();
-		fancyArrayShow(cons);
+		probeConstructors(c);
 		
 }
 	
