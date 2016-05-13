@@ -77,9 +77,9 @@ public class DemoProxy {
 		
 		System.out.println("\n\nCase 4: Probing Proxy Class");
 		System.out.println("*-------------------------*");
-		ReflectionInspection.probeClass(proxedSubject.getClass());
+		ReflectionInspection.probeClassDeep(proxedSubject.getClass());
 		System.out.println("*-------------------------*");
-		ReflectionInspection.probeClass(realSubject.getClass());
+		ReflectionInspection.probeClassDeep(realSubject.getClass());
 
 		System.out.println("\n\nCase 4: Probing Proxy object");
 		//Proxy è una classe costruita a runtime. l'unico modo per capire come è fatta è di esplorarla con la reflection
@@ -88,6 +88,10 @@ public class DemoProxy {
 		//TODO Guardare anche cosa contengono gli attributi che vengono erediti
 		//TODO elencare anche i metodi ereditati
 		//		ReflectionInspection.deepProbe(proxedSubject.getClass());
+		System.out.println("****************\nRealSubject");		
+		ReflectionInspection.probeInstance(proxedSubject);
+		System.out.println("****************\nRealSubject");	
+		ReflectionInspection.probeInstance(realSubject);
 
 		
 		System.out.println("\n\nCase 6: Proxy Creation inside main class constructor");	
