@@ -5,6 +5,7 @@ package it.csttech.miti;
 
 import java.lang.reflect.Proxy;
 
+
 /**
  * 
  * Twin concepts: proxy and invocation handler:
@@ -80,6 +81,7 @@ public class DemoProxy {
 		ReflectionInspection.probeClassDeep(proxedSubject.getClass());
 		System.out.println("*-------------------------*");
 		ReflectionInspection.probeClassDeep(realSubject.getClass());
+		ReflectionInspection.probeClassDeep(java.util.ArrayList.class);
 
 		System.out.println("\n\nCase 5: Probing Proxy object");
 		//Proxy è una classe costruita a runtime. l'unico modo per capire come è fatta è di esplorarla con la reflection
@@ -98,9 +100,9 @@ public class DemoProxy {
 		
 		System.out.println("\n\nCase 7: Probing Proxy Methods");
 		System.out.println("*-------------------------*");
-		ReflectionInspection.probeClassMethods(proxedSubject.getClass());
+		ReflectionInspection.probeClassMethodsDeep(proxedSubject.getClass());
 		System.out.println("*-------------------------*");
-		ReflectionInspection.probeClassMethods(realSubject.getClass());
+		ReflectionInspection.probeClassMethodsDeep(realSubject.getClass());
 		System.out.println("\n *-------------------------* \n");
 		
 		//ReflectionInspection.probeClassMethods();
