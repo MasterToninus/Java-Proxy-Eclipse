@@ -1,9 +1,12 @@
 /**
  * 
  */
-package it.csttech.miti;
+package it.csttech.demoproxy;
 
 import java.lang.reflect.Proxy;
+
+import it.csttech.dragorsone.DeepInspection;
+import it.csttech.toninus.ReflectionInspection;
 
 
 /**
@@ -44,6 +47,8 @@ public class DemoProxy {
 				new TargetInvocationHandler(realSubject));
 		realSubject.method();
 		proxedSubject.method();
+
+		//proxedSubject.dummyMethod(1,2); //! Error: the proxy class can not invoke a method not defined in the implemented interfaces!
 		/*
 		 * You create dynamic proxies using the Proxy.newProxyInstance() method. The newProxyInstance() methods takes 3 parameters:
 		 * 	- The ClassLoader that is to "load" the dynamic proxy class.
@@ -81,32 +86,30 @@ public class DemoProxy {
 		ReflectionInspection.probeClassDeep(proxedSubject.getClass());
 		System.out.println("*-------------------------*");
 		ReflectionInspection.probeClassDeep(realSubject.getClass());
-		ReflectionInspection.probeClassDeep(java.util.ArrayList.class);
 
 		System.out.println("\n\nCase 5: Probing Proxy object");
 		//Proxy è una classe costruita a runtime. l'unico modo per capire come è fatta è di esplorarla con la reflection
 		//https://docs.oracle.com/javase/tutorial/reflect/member/fieldValues.html
-		//TODO Passo l'istanza e esamino nel dettaglio gli attributi (cosa contengono) e i metodi
-		//TODO Guardare anche cosa contengono gli attributi che vengono erediti
-		//TODO elencare anche i metodi ereditati
+		// Passo l'istanza e esamino nel dettaglio gli attributi (cosa contengono) e i metodi
+		// Guardare anche cosa contengono gli attributi che vengono erediti
+		// elencare anche i metodi ereditati
 		//		ReflectionInspection.deepProbe(proxedSubject.getClass());
-		System.out.println("****************\nRealSubject");		
+		System.out.println("****************\n");		
 		ReflectionInspection.probeInstance(proxedSubject);
-		System.out.println("****************\nRealSubject");	
+		System.out.println("****************\n");	
 		ReflectionInspection.probeInstance(realSubject);
 
 		
 		System.out.println("\n\nCase 6: Proxy Creation inside main class constructor");
+		new DemoProxy();
 		
 		System.out.println("\n\nCase 7: Probing Proxy Methods");
 		System.out.println("*-------------------------*");
-		ReflectionInspection.probeClassMethodsDeep(proxedSubject.getClass());
+		DeepInspection.probeClassMethodsDeep(proxedSubject.getClass());
 		System.out.println("*-------------------------*");
-		ReflectionInspection.probeClassMethodsDeep(realSubject.getClass());
+		DeepInspection.probeClassMethodsDeep(realSubject.getClass());
 		System.out.println("\n *-------------------------* \n");
 		
-		//ReflectionInspection.probeClassMethods();
-		new DemoProxy();
 		
 	}
 	

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package it.csttech.miti;
+package it.csttech.demoproxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

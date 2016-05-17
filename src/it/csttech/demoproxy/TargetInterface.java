@@ -1,7 +1,7 @@
 /**
  * 
  */
-package it.csttech.miti;
+package it.csttech.demoproxy;
 
 /**
  * @author jugAncona

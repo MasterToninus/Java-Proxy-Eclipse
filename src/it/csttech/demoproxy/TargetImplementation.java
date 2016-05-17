@@ -1,7 +1,7 @@
 /**
  * 
  */
-package it.csttech.miti;
+package it.csttech.demoproxy;
 
 /**
  * @author JugAncona
@@ -16,7 +16,7 @@ public class TargetImplementation implements TargetInterface {
 	 * 
 	 */
 	public TargetImplementation() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	/* (non-Javadoc)
@@ -29,14 +29,17 @@ public class TargetImplementation implements TargetInterface {
 	}
 	
 	/**
+	 * A method not defined in the interface
 	 * @literal i
 	 * @literal j
 	 * @param i
 	 * @param j
 	 * @return
 	 */
-	public int provaNomeParam(int i, int j) {
-		return i + j;
+	public boolean dummyMethod(int i, int j) {
+		String thisMethodName = new Object(){}.getClass().getEnclosingMethod().toString();
+		System.out.println("    *" + this.getClass().getName() + "*: is invoking *" + thisMethodName +"* with args ( " + i + " , " + j + ")");		
+		return true;
 	}
 
 }
