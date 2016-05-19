@@ -29,7 +29,7 @@ public class DeepInspection extends ReflectionInspection {
 	/*
 	 * Inspect the passed Method
 	 */
-	static public void probeMethodDeep(Method m) {
+	static public void probeMethodDeep(final Method m) {
 
 		out.format("%s%n", m.toGenericString());
 		out.format(fmt, "ReturnType", m.getReturnType());
@@ -59,7 +59,7 @@ public class DeepInspection extends ReflectionInspection {
 		out.println("\n");
 	}
 
-	public static void printParameter(Parameter p) {
+	public static void printParameter(final Parameter p) {
 		out.format(fmt, "Parameter name", p.getName()); 
 		/*why does it not work? literal? try method with params in  TargetImpl.*/
 		out.format(fmt, "Parameter class", p.getType());

@@ -36,7 +36,7 @@ public class TargetImplementation implements TargetInterface {
 	 * @param j
 	 * @return
 	 */
-	public boolean dummyMethod(int i, int j) {
+	public boolean dummyMethod(final int i, final int j) {
 		String thisMethodName = new Object(){}.getClass().getEnclosingMethod().toString();
 		System.out.println("    *" + this.getClass().getName() + "*: is invoking *" + thisMethodName +"* with args ( " + i + " , " + j + ")");		
 		return true;

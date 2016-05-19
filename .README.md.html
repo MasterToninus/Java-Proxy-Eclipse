@@ -642,7 +642,9 @@ function setDocumentScrollTop(ypos)
 <h1> <a id="sperimentare-con-la-proxy-reflection" class="anchor" href="#sperimentare-con-la-proxy-reflection" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sperimentare con la PROXY REFLECTION:</h1> 
 <p>1) Creare una classe fittizia che implementa un'interfaccia 2) Creare un proxy di tale classe che faccia il &quot;tracing&quot; ovvero tenga un contatore di quante volte il suo metodo fittizio &egrave; stato chiamato (e chi lo ha chiamato?)</p> 
 <h2> <a id="motivazioni" class="anchor" href="#motivazioni" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Motivazioni</h2> 
-<p>*(pag 77 di reflection in action) including tracing code and guards to turn it on and off in each class bloats the classes and makes them slower because of the execution of the if statements. Due to these constraints, George decides to make tracing and nontracing versions of his classes. * * *</p> 
+<ul> 
+ <li>(pag 77 di reflection in action) including tracing code and guards to turn it on and off in each class bloats the classes and makes them slower because of the execution of the if statements. Due to these constraints, George decides to make tracing and nontracing versions of his classes.</li> 
+</ul> 
 <h1> <a id="osservazioni" class="anchor" href="#osservazioni" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Osservazioni:</h1> 
 <ul> 
  <li><p>l'oggetto proxy pu&ograve; invocare solo i metodi definiti nelle interfacce implementate dalla classe target e passate al metodo get proxy</p></li> 
@@ -676,7 +678,6 @@ function setDocumentScrollTop(ypos)
       </ul> </li> 
     </ul> </li> 
   </ul> </li> 
-</ul> 
-<p>*</p>
+</ul>
 </body>
 </html>
