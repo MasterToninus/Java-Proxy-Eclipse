@@ -28,3 +28,17 @@
 		* il field h di Proxy è definito protected eppure non appare.. Il motivo è che ho due metodi il get... e il getDeclared.
 			* il primo lista tutti gli oggetti public della classe corrente compresi gli ereditati
 			* il secondo lista tutti gli oggetti definiti all'interno della classe indipendentemente da quale sia il modificatore.
+
+			
+			
+# Casi d'uso del dynamic proxy design pattern
+We create and use proxy objects when we want to add or modify some functionality of an already existing class.
+The proxy object is used instead of the original one.
+Usually, the proxy objects have the same methods as the original one and in Java proxy classes usually extend the original class.
+The proxy has a handle to the original object and can call the method on that.
+
+This way proxy classes can implement many things in a convenient way (Without modifying the original code of the class.):
+* logging when a method starts and stops
+* perform extra checks on arguments
+* mocking the behavior of the original class
+* implement lazy access to costly resources
