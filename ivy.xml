@@ -25,8 +25,13 @@
         status="integration">
 	</info>
 	<dependencies>
+
 		<!--  Logging  -->
 		<dependency org="org.apache.logging.log4j" name="log4j-api" rev="2.5" transitive="false"/>
 		<dependency org="org.apache.logging.log4j" name="log4j-core" rev="2.5" transitive="false"/>
+
+		<!-- http://mvnrepository.com/artifact/cglib/cglib -->
+		<dependency org="cglib" name="cglib" rev="3.2.2"/>
+		
 	</dependencies>
 </ivy-module>

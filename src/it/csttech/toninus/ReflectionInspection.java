@@ -95,7 +95,7 @@ public class ReflectionInspection {
 	 */
 	private static List<Object> objectArraytoList(Object o) {
 		List<Object> list = new ArrayList<Object>();
-		if (o.getClass().isArray() && o != null)
+		if ( o != null && o.getClass().isArray() )
 			for (int i = 0; i < Array.getLength(o); i++)
 				list.add(Array.get(o, i));
 		return list;
