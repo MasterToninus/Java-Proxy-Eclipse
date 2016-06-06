@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * @author antoniomiti
+ * @author MasterToninus
  *
  */
 public class ReflectionInspection {

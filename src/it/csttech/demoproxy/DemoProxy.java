@@ -17,7 +17,7 @@ import it.csttech.toninus.ReflectionInspection;
  * Cosa sono i Proxy:
  * 	A dynamic proxy class is a class that implements a list of interfaces specified at runtime such that a method invocation through one of the interfaces on an instance of the class will be encoded and dispatched to another object through a uniform interface.
  * 
- * @author antoniomiti
+ * @author MasterToninus
  * @see <a href="http://tutorials.jenkov.com/java-reflection/dynamic-proxies.html">link1<a>
  * @see <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/reflection/proxy.html">link2<a>
  * @see <a href="http://www.jugancona.it/vqwiki/jsp/Wiki%3FDesign+patterns+in+pillole:+il+%22mediatore%22,+il+proxy+pattern.html">link3<a>
